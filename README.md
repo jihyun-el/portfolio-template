@@ -85,6 +85,7 @@ npm run preview
 - [아트 스타일](docs/ART_STYLE.md) · [구현 레시피](docs/ART_RECIPES.md) · [판단 기록](docs/ART_DECISIONS.md) · [검수 규격](docs/ART_REVIEW.md): 의미와 미감, 심볼, 선, 카메라, 실제 화면 확인
 - [콘텐츠 안내](docs/CONTENT_GUIDE.md): JSON 필드, 이미지, 링크, 빈 목록
 - [색 변경 안내](docs/THEME_GUIDE.md): 자유 색 토큰, 밝음/어두움, 그림의 빛 팔레트
+- [상세 읽기 UX](docs/DETAIL_UX.md): 두 레일의 독립 접힘, 현재 위치·목차·돌아가기, 공유용 상세 주소
 
 아트 작업은 위 문서의 기준을 유지합니다. `npm run check-art`는 색 토큰 형식·연결·폰트·문서를 검사하며 빌드에도 포함됩니다. 사용자의 색 선택을 제한하지 않습니다. 의미·아름다움·명암·동작은 실제 미리보기에서 별도로 확인합니다.
 

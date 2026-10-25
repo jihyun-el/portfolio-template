@@ -118,6 +118,7 @@
 | 아트 고정 원칙·실패 사례·구현·검수 | `docs/ART_DIRECTION.md`, `docs/ART_STYLE.md`, `docs/ART_DECISIONS.md`, `docs/ART_RECIPES.md`, `docs/ART_REVIEW.md` |
 | 스타일 기준값과 변경 감지 | `docs/art/style-contract.json`, `scripts/check-art.mjs` |
 | 전체 화면·선택 메뉴·본문 | `src/components/portfolio.tsx` |
+| 상세 목차·두 레일 접힘·고정 영역·탐색 | `docs/DETAIL_UX.md`, `src/components/project-detail.tsx`, `src/lib/use-reading-chrome.ts` |
 | 추상 그림 종류와 배치 | `src/components/project-art.tsx` |
 | 점광원·밝기·번짐 렌더러 | `src/components/light-field.tsx` |
 | 색·여백·글자 크기·반응형 | `src/app/globals.css` |
@@ -137,6 +138,7 @@
 `docs/ART_DIRECTION.md`가 가리키는 문서 전체가 구체적인 기준이다. 사용자 요청 없이 테마를 바꾸거나 일반적인 카드형 랜딩 페이지로 다시 디자인하지 않는다. 스타일의 취향 인터뷰를 다시 시작하지 않는다.
 
 - 데스크톱: 왼쪽 소개·메뉴, 오른쪽 한 프로젝트. 모바일: 상단 소개·가로 메뉴, 아래 콘텐츠.
+- 상세 화면을 바꾸기 전 `docs/DETAIL_UX.md`를 읽는다. 카테고리 레일과 상세 레일은 별도로 접히며, 두 레일이 옆이면 항상 보인다. 레일이 위로 오면 스크롤 방향에 따라 접히되 이름·직무·테마와 돌아가기·현재 위치가 남는다. 단일 모바일 경계로 합치거나 돌아가기를 스크롤 밖에 두지 않는다.
 - Pretendard 본문, 숫자·짧은 라벨의 Geist Mono. 읽는 순서가 글자 크기와 여백으로 드러나야 한다.
 - 기본 예시는 중성 바탕·가는 구분선·제한된 강조색과 보랏빛 어두운 회색이다. **사용자는 다른 색을 자유롭게 고를 수 있다.** 색은 `content/theme.json`에서 바꾸고 본문·구조·신호의 역할과 명암은 유지한다. 기본 색상을 영구 잠금으로 취급하지 않는다.
 - **의미와 미감 모두 완료 조건이다.** 그림으로 설명할 수 있으면 그림을 우선한다. 화려함을 줄여 모호함을 해결하거나, 정확하다는 이유로 투박한 조형을 완료 처리하지 않는다.
@@ -165,6 +167,7 @@
 ## 8. 검증과 배포
 
 로컬 주소는 `127.0.0.1`을 사용한다. 의존성이 없으면 Node.js 24를 사용해 `npm ci --ignore-scripts`를 실행한다.
+커밋 메시지는 변경 내용이 드러나는 한국어로 작성한다.
 
 검증 순서:
 
