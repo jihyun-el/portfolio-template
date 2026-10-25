@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "purpose": "색 선택은 자유롭게 유지하면서 토큰 형식·런타임 연결·폰트·문서가 깨지는 것을 감지한다.",
+  "themeFile": "content/theme.json",
+  "rampFile": "src/components/light-field.tsx",
+  "fontFiles": [
+    "public/fonts/PretendardVariable.woff2",
+    "public/fonts/GeistMono-Variable.woff2",
+    "public/fonts/Pretendard-LICENSE.txt",
+    "public/fonts/GeistMono-LICENSE.txt"
+  ],
+  "monoUnicodeRange": "U+0030-0039, U+0041-005A, U+0061-007A, U+0025, U+002B-002F, U+003A, U+007E, U+00D7, U+2013, U+2212",
+  "requiredDocuments": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md",
+    "docs/ART_DIRECTION.md",
+    "docs/ART_STYLE.md",
+    "docs/ART_RECIPES.md",
+    "docs/ART_DECISIONS.md",
+    "docs/ART_REVIEW.md",
+    "docs/art/line-grammar.svg",
+    "docs/THEME_GUIDE.md",
+    "content/theme.json",
+    "src/lib/theme.ts",
+    "scripts/theme.mjs"
+  ],
+  "cssFile": "src/app/globals.css"
+}

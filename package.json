@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev --hostname 127.0.0.1",
-    "build": "node scripts/check-content.mjs && next build && node scripts/check-export.mjs",
+    "build": "node scripts/check-content.mjs && node scripts/check-art.mjs && next build && node scripts/check-export.mjs",
+    "check-art": "node scripts/check-art.mjs",
     "check-content": "node scripts/check-content.mjs",
     "check-types": "tsc --noEmit",
     "preview": "node scripts/preview.mjs",

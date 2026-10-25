@@ -1,10 +1,8 @@
 :root {
-  --paper:#fff; --ink:#171717; --ink-2:#626262; --ink-3:#989898; --line:#e3e3e3; --wash:#f3f3f3;
-  --stage:#fafafa; --stage-ink:#232323; --signal:#c04466;
   --fs-xs:12px; --fs-s:14px; --fs-m:16px; --fs-l:20px;
   color-scheme:light;
 }
-.dark { --paper:#151319; --ink:#e7e5eb; --ink-2:#b7b3bb; --ink-3:#6d6973; --line:#2c2830; --wash:#211d25; --stage:#110f15; --stage-ink:#e7e5eb; --signal:#e36986; color-scheme:dark; }
+.dark { color-scheme:dark; }
 * { box-sizing:border-box; }
 html,body { margin:0; }
 body { font-family:var(--font-pretendard),"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; font-size:var(--fs-m); line-height:1.7; word-break:keep-all; background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; }

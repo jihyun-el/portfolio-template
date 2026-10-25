@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { signalPaletteGLSL } from "@/lib/theme";
 
 // Additive points, a blurred glow and brightness-based colour on a transparent ground. The caller supplies a scene, without project-specific data or rules.
 export type Put = (x: number, y: number, size: number, light: number) => void;
@@ -20,16 +21,14 @@ void main() { o = 0.25 * (texture(src, vUv + texel * vec2(-1.0, -1.0)) + texture
 const BLUR = `#version 300 es
 precision highp float; in vec2 vUv; out vec4 o; uniform sampler2D src; uniform vec2 step;
 void main() { vec4 s = texture(src, vUv) * 0.227; s += (texture(src, vUv + step * 1.385) + texture(src, vUv - step * 1.385)) * 0.316; s += (texture(src, vUv + step * 3.231) + texture(src, vUv - step * 3.231)) * 0.070; o = s; }`;
-// Brightness ramp: on a dark ground indigo → magenta → orange → amber, on a light ground the seaborn flare. The light
-// is laid over the ground: where it is faint the ground shows through.
+// The user-selected palettes come from content/theme.json. Brightness order and theme-aware compositing stay shared.
 const FINAL = `#version 300 es
 precision highp float; in vec2 vUv; out vec4 o; uniform sampler2D base, glow; uniform float light, glowK;
-const vec3 INDIGO = vec3(0.29, 0.21, 0.71), MAGENTA = vec3(0.76, 0.13, 0.44), ORANGE = vec3(0.94, 0.40, 0.11), AMBER = vec3(1.0, 0.80, 0.29);
-vec3 ramp(float x) { return x < 1.0 ? INDIGO * 0.8 : x < 2.0 ? mix(INDIGO, MAGENTA, x - 1.0) : x < 3.0 ? mix(MAGENTA, ORANGE, x - 2.0) : mix(ORANGE, AMBER, x - 3.0); }
+${signalPaletteGLSL}
+vec3 ramp(float x) { return x < 1.0 ? DARK0 * 0.8 : x < 2.0 ? mix(DARK0, DARK1, x - 1.0) : x < 3.0 ? mix(DARK1, DARK2, x - 2.0) : mix(DARK2, DARK3, x - 3.0); }
 vec3 flare(float t) {
-  vec3 f0 = vec3(0.929, 0.689, 0.504), f1 = vec3(0.907, 0.494, 0.390), f2 = vec3(0.838, 0.308, 0.372), f3 = vec3(0.666, 0.227, 0.430), f4 = vec3(0.479, 0.180, 0.437), f5 = vec3(0.294, 0.137, 0.384);
   float y = t * 5.0;
-  return y < 1.0 ? mix(f0, f1, y) : y < 2.0 ? mix(f1, f2, y - 1.0) : y < 3.0 ? mix(f2, f3, y - 2.0) : y < 4.0 ? mix(f3, f4, y - 3.0) : mix(f4, f5, y - 4.0);
+  return y < 1.0 ? mix(LIGHT0, LIGHT1, y) : y < 2.0 ? mix(LIGHT1, LIGHT2, y - 1.0) : y < 3.0 ? mix(LIGHT2, LIGHT3, y - 2.0) : y < 4.0 ? mix(LIGHT3, LIGHT4, y - 3.0) : mix(LIGHT4, LIGHT5, y - 4.0);
 }
 void main() {
   float n = clamp(texture(base, vUv).r + glowK * texture(glow, vUv).r, 0.0, 1.0);

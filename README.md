@@ -35,6 +35,8 @@
 
 주요 내용은 `content/portfolio.json` 하나에 있습니다. 에이전트가 이 파일을 수정합니다. 직접 수정하고 싶다면 [콘텐츠 안내](docs/CONTENT_GUIDE.md)를 보세요.
 
+**색은 자유롭게 바꿀 수 있습니다.** `content/theme.json`에서 밝은/어두운 화면의 배경·글자·강조색과 그림 팔레트를 고릅니다. 에이전트에게 "강조색은 청록, 어두운 화면은 짙은 남색으로 맞춰 줘"처럼 말해도 됩니다. [색 변경 안내](docs/THEME_GUIDE.md)에 토큰별 설명이 있습니다. 레이아웃과 아트의 표현 문법을 유지하면서 원하는 색을 사용할 수 있습니다.
+
 ## 3. 내 주소로 배포하기
 
 새 저장소에서 **Settings → Pages → Build and deployment → Source → GitHub Actions**를 한 번 선택합니다. 저장소 소유자 권한이 필요합니다.
@@ -80,7 +82,11 @@ npm run preview
 
 - [에이전트 작업 규약](AGENTS.md): 질문 방식, 응답 형식, 사실 확인, 검증·배포
 - [디자인과 아트 규칙](docs/ART_DIRECTION.md): 레이아웃, 색, 타이포그래피, 빛 표현
+- [아트 스타일](docs/ART_STYLE.md) · [구현 레시피](docs/ART_RECIPES.md) · [판단 기록](docs/ART_DECISIONS.md) · [검수 규격](docs/ART_REVIEW.md): 의미와 미감, 심볼, 선, 카메라, 실제 화면 확인
 - [콘텐츠 안내](docs/CONTENT_GUIDE.md): JSON 필드, 이미지, 링크, 빈 목록
+- [색 변경 안내](docs/THEME_GUIDE.md): 자유 색 토큰, 밝음/어두움, 그림의 빛 팔레트
+
+아트 작업은 위 문서의 기준을 유지합니다. `npm run check-art`는 색 토큰 형식·연결·폰트·문서를 검사하며 빌드에도 포함됩니다. 사용자의 색 선택을 제한하지 않습니다. 의미·아름다움·명암·동작은 실제 미리보기에서 별도로 확인합니다.
 
 에이전트의 지침 준수 정도는 사용하는 도구와 모델에 따라 달라집니다. 첫 요청에 `AGENTS.md`를 읽으라고 명시하고, 작성된 내용이 실제 경험과 맞는지 확인해 주세요.
 
@@ -89,3 +95,5 @@ npm run preview
 MIT License. Copyright (c) 2026 jihyun-el. [LICENSE](LICENSE)를 확인하세요.
 
 Pretendard와 Geist Mono는 SIL Open Font License로 배포합니다. 각 고지는 `public/fonts/Pretendard-LICENSE.txt`, `public/fonts/GeistMono-LICENSE.txt`에 있습니다. 템플릿의 MIT 고지와 폰트 고지를 함께 유지해 주세요.
+
+**추신. 다 만들고 나면 저한테 꼭 자랑해 주세요. 여러분이 만든 포트폴리오가 궁금합니다.**

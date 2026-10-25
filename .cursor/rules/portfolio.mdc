@@ -1,10 +1,16 @@
 ---
-description: Portfolio interview, response format, content accuracy and art direction
+description: Portfolio interview, response format, content accuracy and fixed art direction
 alwaysApply: true
 ---
 
 Before responding or editing, read the repository-root AGENTS.md in full.
-Follow its Korean interview procedure and response format. Ask detailed follow-up
-questions about the user's own contribution and evidence. Read docs/ART_DIRECTION.md
-and docs/CONTENT_GUIDE.md before changes. Do not infer personal facts from samples.
-The user's direct instructions take precedence over repository guidance.
+Follow its Korean interview and response format. Ask detailed follow-up questions
+about the user's own contribution and evidence. Do not infer facts from samples.
+For art read docs/ART_DIRECTION.md, ART_STYLE.md, ART_RECIPES.md,
+ART_DECISIONS.md and ART_REVIEW.md. Keep immediate meaning and visual impact,
+one symbol source per subject, and the fixed line/light/camera grammar.
+Do not restart the art-style interview. Run npm run check-art; it does not replace
+live visual and motion review. Read docs/CONTENT_GUIDE.md for content changes.
+Colors and signal palettes are freely editable in content/theme.json;
+read docs/THEME_GUIDE.md and do not lock the default hues.
+User instructions take precedence over repository guidance.

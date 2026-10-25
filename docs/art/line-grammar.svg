@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420" role="img" aria-labelledby="title desc">
+  <title id="title">데이터 선과 지시선의 공통 문법</title>
+  <desc id="desc">위는 실제 입출력을 잇는 데이터 선, 아래는 대상 위 점에서 이름표로 가는 가는 지시선이다. 둘 다 수평과 45도 구간, 둥근 꺾임을 사용한다. 장면 데이터가 아닌 규칙 설명 그림이다.</desc>
+  <rect width="1000" height="420" fill="#fafafa"/>
+  <g font-family="sans-serif" fill="#232323">
+    <text x="40" y="40" font-size="22" font-weight="700">ONE ROUTE GRAMMAR / TWO ROLES</text>
+    <text x="40" y="70" font-size="14" fill="#626262">Rule illustration — not project data</text>
+    <text x="40" y="118" font-size="15" font-weight="700">DATA / 1.5 px</text>
+    <text x="40" y="252" font-size="15" font-weight="700">LEADER / 1 px</text>
+    <text x="232" y="160" font-size="15">INPUT</text>
+    <text x="746" y="110" font-size="15">OUTPUT</text>
+    <text x="716" y="306" font-size="15">LABEL</text>
+    <text x="40" y="384" font-size="14" fill="#626262">Horizontal / vertical / 45° runs · consistent rounded bends · clear endpoints</text>
+  </g>
+  <g fill="none" stroke="#232323">
+    <rect x="210" y="128" width="100" height="54" stroke-opacity=".7"/>
+    <rect x="730" y="78" width="110" height="54" stroke-opacity=".7"/>
+    <path d="M310 155 H485 Q495 155 503 147 L537 113 Q545 105 555 105 H730" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M395 320 L425 290 Q430 285 438 285 H698" stroke="#fafafa" stroke-width="4"/>
+    <path d="M395 320 L425 290 Q430 285 438 285 H698" stroke-opacity=".46" stroke-width="1" stroke-linecap="round"/>
+    <ellipse cx="370" cy="324" rx="70" ry="28" stroke-opacity=".65"/>
+  </g>
+  <path d="M550 105 H590" fill="none" stroke="#c04466" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="395" cy="320" r="2" fill="#232323"/>
+</svg>
