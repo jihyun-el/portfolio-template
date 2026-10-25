@@ -1,0 +1,10 @@
+---
+description: Portfolio interview, response format, content accuracy and art direction
+alwaysApply: true
+---
+
+Before responding or editing, read the repository-root AGENTS.md in full.
+Follow its Korean interview procedure and response format. Ask detailed follow-up
+questions about the user's own contribution and evidence. Read docs/ART_DIRECTION.md
+and docs/CONTENT_GUIDE.md before changes. Do not infer personal facts from samples.
+The user's direct instructions take precedence over repository guidance.
