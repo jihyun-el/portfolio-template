@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quantization · Art specimen</title>
+<style>
+:root{color-scheme:light;--stage:#fafafa;--stage-ink:#232323}
+:root.dark{color-scheme:dark;--stage:#110f15;--stage-ink:#e7e5eb}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0;background:var(--stage);color:var(--stage-ink)}
+main{position:relative;width:100%;height:100svh;min-height:260px}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+nav{position:fixed;right:20px;bottom:20px;display:flex;gap:8px}
+button{display:grid;place-items:center;width:36px;height:36px;border:1px solid color-mix(in srgb,var(--stage-ink) 18%,transparent);border-radius:50%;background:var(--stage);color:var(--stage-ink);cursor:pointer}
+button:focus-visible{outline:2px solid currentColor;outline-offset:4px}svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
+#fallback{width:100%;height:100%;object-fit:contain}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+</head>
+<body>
+<main aria-label="설명용 양자화 도식: 같은 지형의 NF4 계단면과 BF16 연속면. 실측 모델 가중치가 아닙니다.">
+<img id="fallback" src="./still.svg" alt="동일한 언덕을 왼쪽은 계단형 기둥, 오른쪽은 연속된 면으로 비교한 그림">
+<canvas hidden aria-label="양자화 입체 도식"></canvas>
+</main>
+<nav aria-label="견본 조작">
+<button id="theme" aria-label="밝음과 어두움 전환"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/></svg></button>
+<button id="pause" aria-label="움직임 멈추기" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></button>
+</nav>
+<script type="module">
+const root = document.documentElement, media = matchMedia("(prefers-color-scheme:dark)");
+root.classList.toggle("dark", media.matches);
+const syncFallback = () => { document.getElementById("fallback").src = "./still.svg#" + (root.classList.contains("dark") ? "dark" : "light"); };
+syncFallback();
+document.getElementById("theme").onclick = () => { root.classList.toggle("dark"); syncFallback(); };
+try {
+  const [{ mount }, { draw, shot }] = await Promise.all([import("./renderer.js"), import("./scene.js")]);
+  const canvas = document.querySelector("canvas");
+  canvas.hidden = false;
+  const art = mount(canvas, draw, shot);
+  document.getElementById("fallback").hidden = true;
+  document.getElementById("pause").onclick = event => {
+    const button = event.currentTarget, paused = button.getAttribute("aria-pressed") !== "true";
+    button.setAttribute("aria-pressed", String(paused)); button.setAttribute("aria-label", paused ? "움직임 재생" : "움직임 멈추기"); art.pause(paused);
+  };
+  addEventListener("pagehide", () => art.dispose(), { once: true });
+} catch(error) { document.querySelector("canvas").hidden = true; document.getElementById("pause").disabled = true; console.warn("Using the retained static specimen.", error); }
+</script>
+</body>
+</html>
