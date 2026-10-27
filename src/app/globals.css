@@ -73,6 +73,8 @@ button { font:inherit; color:inherit; }
 .art-label::after { content:""; width:40px; border-top:1px solid var(--ink-3); margin-top:8px; opacity:.55; }
 .art-study figcaption { display:flex; justify-content:space-between; gap:16px; padding-block:12px 18px; font-size:10px; color:var(--ink-2); }
 .art-study figcaption .num { letter-spacing:.1em; }
+.quantization-study { min-height:300px; }
+.quantization-frame { display:block; flex:1; width:100%; min-height:270px; border:0; color-scheme:normal; }
 .art-fallback { display:none; position:absolute; left:50%; top:50%; width:50%; height:56%; transform:translate(-50%,-50%); }
 .lf[data-flat] .art-fallback { display:block; }
 .art-fallback i { position:absolute; inset:15%; border:1px solid var(--signal); box-shadow:0 0 24px color-mix(in srgb,var(--signal) 20%,transparent); border-radius:50%; transform:rotateX(55deg) rotateZ(-22deg); }

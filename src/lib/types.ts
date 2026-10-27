@@ -3,7 +3,7 @@ export type RecordEntry = { title: string; period: string; description: string }
 export type Project = {
   id: string; name: string; category: string; period: string; role: string;
   title: string; accent: string; summary: string; stack: string[]; links: PublicLink[];
-  image: string; imageAlt: string; art: "orbit" | "layers" | "flow" | "none";
+  image: string; imageAlt: string; art: "orbit" | "layers" | "flow" | "quantization" | "none";
   artLabels: string[]; sections: { title: string; body: string }[];
 };
 export type PortfolioData = {

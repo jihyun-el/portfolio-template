@@ -4,6 +4,7 @@ import { useRef, type CSSProperties } from "react";
 import { LightField, type Scene } from "./light-field";
 import type { Project } from "@/lib/types";
 import { sitePath } from "@/lib/content";
+import { QuantizationArt } from "./quantization-art";
 
 // Decorative abstract studies, not measured data or a claim about a project's architecture.
 // The brightness palette and additive point light are shared by all three studies.
@@ -40,6 +41,7 @@ export function ProjectArt({ project }: { project: Project }) {
     }
   };
   if (project.image) return <figure className="project-image"><img src={sitePath(project.image)} alt={project.imageAlt} /><figcaption>{project.imageAlt}</figcaption></figure>;
+  if (project.art === "quantization") return <QuantizationArt />;
   if (project.art === "none") return <div className="art-blank" aria-hidden="true"><span>{project.name}</span></div>;
   return <figure className="art-study" onPointerMove={(e) => { const b = e.currentTarget.getBoundingClientRect(); pointer.current = { x: (e.clientX - b.left) / b.width - 0.5, y: (e.clientY - b.top) / b.height - 0.5 }; }} onPointerLeave={() => { pointer.current = { x: 0, y: 0 }; }}>
     <LightField scene={scene} label={`${project.name}의 추상 장식 그림`} still={3600}>

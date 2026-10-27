@@ -9,13 +9,13 @@
 
 코딩 에이전트가 사용자의 경험을 질문으로 끌어내고, 확인된 사실만 `content/portfolio.json`에 기록해 사이트로 만듭니다. 웹 개발 경험이 없어도 수업 과제, 팀 프로젝트, 작은 도구부터 시작할 수 있습니다. 서버·데이터베이스·유료 서비스 없이 GitHub Pages에서 동작합니다.
 
-![데스크톱 홈, 어두운 화면](docs/screenshots/01-home-dark.png)
+![새 랜딩, 어두운 화면](docs/screenshots/landing-dark.png)
 
 ## 특징
 
 - **사실 중심 작성** — 에이전트가 시작한 이유, 본인 기여, 막힌 지점, 확인한 결과를 단계적으로 질문합니다. 근거 없는 성과·수치·경력은 기록하지 않습니다. 모르는 항목은 `미확인`으로 두거나 제외합니다.
 - **데이터와 화면의 분리** — 이름·프로젝트·기술·글은 JSON 한 파일로 관리합니다. 코드를 수정하지 않고 내용을 교체할 수 있습니다.
-- **일관된 아트 디렉션** — 점광원으로 그린 추상 그래픽, Pretendard·Geist Mono 타이포그래피, 얇은 구분선과 제한된 강조색을 사용합니다. 규칙은 문서와 검사 스크립트로 보존합니다.
+- **일관된 아트 디렉션** — 양자화 도식 견본과 점광원 추상 그래픽, Pretendard·Geist Mono 타이포그래피, 얇은 구분선과 제한된 강조색을 사용합니다. 규칙은 문서와 검사 스크립트로 보존합니다.
 - **자유로운 색 구성** — 밝은·어두운 테마의 색과 그림 팔레트를 `content/theme.json`에서 바꿉니다.
 - **반응형 상세 읽기 화면** — 카테고리 레일과 상세 레일이 독립적으로 접히며, 프로젝트별 공유 가능한 상세 주소를 제공합니다.
 - **검증된 배포 흐름** — 콘텐츠 형식, 아트 토큰, 정적 내보내기 결과와 경로를 빌드 단계에서 검사하고, GitHub Actions로 배포합니다.
@@ -94,7 +94,7 @@ GitHub Pages 설정도 확인하고, 완료되면 실제 접속되는 사이트 
 |---|---|---|
 | 이름·소개·프로젝트·기술·글·연락처 | `content/portfolio.json` | [콘텐츠 안내](docs/CONTENT_GUIDE.md) |
 | 밝은/어두운 테마 색, 그림 팔레트 | `content/theme.json` | [색 변경 안내](docs/THEME_GUIDE.md) |
-| 프로젝트 그래픽 종류 (`orbit`, `layers`, `flow`, `none`) | `content/portfolio.json`의 `art` | [콘텐츠 안내](docs/CONTENT_GUIDE.md) |
+| 프로젝트 그래픽 종류 (`orbit`, `layers`, `flow`, `quantization`, `none`) | `content/portfolio.json`의 `art` | [콘텐츠 안내](docs/CONTENT_GUIDE.md) |
 | 레이아웃·상세 화면 동작 | `src/components/`, `src/app/globals.css` | [상세 읽기 UX](docs/DETAIL_UX.md) |
 
 색은 에이전트에게 "강조색은 청록, 어두운 화면은 짙은 남색으로 맞춰 줘"처럼 요청해도 됩니다. 레이아웃과 아트 문법은 유지되며, 기본 색을 고수할 필요는 없습니다.

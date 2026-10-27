@@ -62,7 +62,7 @@
 | `links` | 공개 저장소·시연·문서 링크. 없으면 `[]` |
 | `image` | 이미지가 없으면 `""`. 있으면 `/images/my-project.png` 형식 |
 | `imageAlt` | 이미지 설명. 이미지가 있으면 필수 |
-| `art` | `orbit`, `layers`, `flow`, `none` 중 하나 |
+| `art` | `orbit`, `layers`, `flow`, `quantization`, `none` 중 하나 |
 | `artLabels` | 장식 주변의 짧은 라벨 3개. 근거 없는 성능 수치를 넣지 않음 |
 | `sections` | 만든 과정. `{ "title": "제목", "body": "내용" }`의 목록 |
 
@@ -108,3 +108,7 @@ PAGES_BASE_PATH=/my-portfolio npm run preview
 `http://127.0.0.1:4173/my-portfolio/`에서 확인한다. PowerShell에서 루트 주소 빌드로 돌아가려면 `Remove-Item Env:PAGES_BASE_PATH`를 실행한다. 새 환경 변수 값으로 경로를 바꾸었다면 다시 빌드한다.
 
 내용 변경 뒤 기본 검증은 `npm test`, `npm run build`, `npm run check-types`다. 프레임워크 동작을 바꾸는 에이전트는 설치된 `node_modules/next/dist/docs/`의 관련 문서를 먼저 읽는다.
+
+`quantization`은 같은 예시 지형의 계단면과 연속면을 비교하는 입체 견본입니다. 선지·선택 고리·선지 순환은 포함하지 않으며, 상세 목차에는 연속 곡선과 계단선을 겹친 2D 심볼을 표시합니다. 실제 모델의 측정값이나 작성자의 성과를 뜻하지 않습니다.
+
+장면이나 테마 색을 바꾼 뒤 `node scripts/render-quantization-still.mjs`를 실행하면 같은 형상의 밝은·어두운 정지 도식(`public/examples/quantization/still.svg`)을 다시 만듭니다. WebGL을 사용할 수 없거나 입체 렌더러를 불러오지 못한 환경에서 이 그림을 표시합니다.

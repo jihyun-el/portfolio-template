@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>양자화 · 도식 견본</title>
+<style>
+:root{color-scheme:light;--stage:#fafafa;--stage-ink:#232323}
+:root.dark{color-scheme:dark;--stage:#110f15;--stage-ink:#e7e5eb}
+[hidden]{display:none!important}*{box-sizing:border-box}body{margin:0;background:var(--stage);color:var(--stage-ink)}
+main{position:relative;width:100%;height:100svh;min-height:220px}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+nav{position:fixed;right:20px;bottom:20px;display:flex;gap:8px}
+button{display:grid;place-items:center;width:36px;height:36px;border:1px solid color-mix(in srgb,var(--stage-ink) 18%,transparent);border-radius:50%;background:var(--stage);color:var(--stage-ink);cursor:pointer}
+button:focus-visible{outline:2px solid currentColor;outline-offset:4px}svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
+#fallback{width:100%;height:100%;object-fit:contain}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
+</head>
+<body>
+<main aria-label="같은 지형의 계단면과 연속면을 비교하는 설명용 양자화 견본. 실측 모델 가중치가 아닙니다.">
+<img id="fallback" src="./still.svg" alt="같은 지형을 왼쪽은 계단면, 오른쪽은 연속면으로 비교한 설명용 양자화 견본">
+<canvas hidden aria-label="계단면과 연속면의 양자화 입체 도식"></canvas>
+</main>
+<nav aria-label="견본 조작">
+<button id="theme" aria-label="밝음과 어두움 전환"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/></svg></button>
+<button id="pause" aria-label="움직임 멈추기" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></button>
+</nav>
+<script type="module">
+const root = document.documentElement;
+const embedded = new URLSearchParams(location.search).get("embedded") === "1";
+let art, active = true;
+root.classList.toggle("dark", matchMedia("(prefers-color-scheme:dark)").matches);
+const syncFallback = () => { document.getElementById("fallback").src = "./still.svg#" + (root.classList.contains("dark") ? "dark" : "light"); };
+const setTheme = (dark, stage, ink) => {
+  root.classList.toggle("dark", dark === true);
+  for (const [key, value] of [["--stage", stage], ["--stage-ink", ink]]) if (typeof value === "string" && CSS.supports("color", value)) root.style.setProperty(key, value);
+  syncFallback();
+};
+if (embedded) {
+  document.querySelector("nav").hidden = true;
+  const style = getComputedStyle(frameElement);
+  setTheme(parent.document.documentElement.classList.contains("dark"), style.getPropertyValue("--stage").trim(), style.getPropertyValue("--stage-ink").trim());
+  addEventListener("message", event => {
+    if (event.source !== parent || event.origin !== location.origin) return;
+    if (event.data?.type === "portfolio:art-theme") setTheme(event.data.dark, event.data.stage, event.data.ink);
+    if (event.data?.type === "portfolio:art-visible") { active = event.data.visible === true; art?.setActive(active); }
+  });
+}
+syncFallback();
+document.getElementById("theme").onclick = () => { root.classList.toggle("dark"); syncFallback(); };
+try {
+  const [{ mount }, { draw, shot }] = await Promise.all([import("./renderer.js"), import("./scene.js")]);
+  const canvas = document.querySelector("canvas");
+  canvas.hidden = false;
+  art = mount(canvas, draw, shot);
+  art.setActive(active);
+  document.getElementById("fallback").hidden = true;
+  root.dataset.render = "webgl";
+  document.getElementById("pause").onclick = event => {
+    const button = event.currentTarget, paused = button.getAttribute("aria-pressed") !== "true";
+    button.setAttribute("aria-pressed", String(paused)); button.setAttribute("aria-label", paused ? "움직임 재생" : "움직임 멈추기"); art.pause(paused);
+  };
+  addEventListener("pagehide", () => art.dispose(), { once: true });
+} catch(error) {
+  root.dataset.render = "fallback";
+  document.querySelector("canvas").hidden = true;
+  document.getElementById("pause").disabled = true;
+  console.warn("정지 도식으로 표시합니다.", error);
+}
+</script>
+</body>
+</html>

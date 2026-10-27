@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import type { Project } from "@/lib/types";
 import { sitePath } from "@/lib/content";
+import { QuantizationMark } from "./quantization-mark";
 
 function ProjectMark({ project }: { project: Project }) {
   if (project.image) return <img src={sitePath(project.image)} alt="" />;
+  if (project.art === "quantization") return <QuantizationMark />;
   return <svg viewBox="0 0 120 64" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.2">
     {project.art === "layers" ? <>{[0, 1, 2].map((i) => <path key={i} d={`M18 ${22 + i * 9} 66 ${8 + i * 9} 106 ${24 + i * 9} 58 ${39 + i * 9}Z`} opacity={0.35 + i * 0.25} />)}</>
     : project.art === "flow" ? <>{[0, 1, 2].map((i) => <path key={i} d={`M8 ${22 + i * 10} C36 ${-4 + i * 10} 76 ${66 + i * 10} 112 ${23 + i * 10}`} opacity={0.35 + i * 0.25} />)}</>

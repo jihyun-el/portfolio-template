@@ -50,7 +50,7 @@ export function validatePortfolio(data) {
     if (ids.has(p.id)) fail(`${at}.id`, "다른 프로젝트와 id가 겹칩니다.");
     ids.add(p.id);
     if (p.accent && typeof p.title === "string" && !p.title.includes(p.accent)) fail(`${at}.accent`, "title에 실제로 들어 있는 단어를 쓰거나 비워 두세요.");
-    if (!["orbit", "layers", "flow", "none"].includes(p.art)) fail(`${at}.art`, "orbit, layers, flow, none 중 선택하세요.");
+    if (!["orbit", "layers", "flow", "quantization", "none"].includes(p.art)) fail(`${at}.art`, "orbit, layers, flow, quantization, none 중 선택하세요.");
     list(p.artLabels, `${at}.artLabels`, (item, key) => str(item, key));
     if (Array.isArray(p.artLabels) && p.artLabels.length !== 3) fail(`${at}.artLabels`, "라벨을 정확히 3개 입력하세요.");
     if (p.image && !isLocalImage(p.image)) fail(`${at}.image`, "/images/example.png처럼 public/images 안의 파일 경로를 쓰세요.");
